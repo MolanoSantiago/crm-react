@@ -41,11 +41,11 @@ class UserController extends Controller
 
         if(is_null($cliente)){
             return response()->json(["message"=>"Hubo un problema al registrar el nuevo cliente"]
-            ,404);
+            ,500);
         }
         return response()->json([
             'cliente' => $cliente
-        ], 200);
+        ], 201);
     }
 
 
@@ -79,7 +79,7 @@ class UserController extends Controller
         $cliente = User::find($id);
         if(is_null($cliente)){
             return response()->json(["message"=>"Hubo un problema al actualizar la información del cliente"]
-            ,404);
+            ,500);
         }
         $cliente->update([
             'name' => $request->name,
@@ -90,7 +90,7 @@ class UserController extends Controller
         ]);
         return response()->json([
             'cliente' => $cliente
-        ], 200);
+        ], 202);
     }
 
     /**
